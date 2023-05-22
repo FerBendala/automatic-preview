@@ -1,55 +1,21 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import { useNotes } from './hooks'
-import { useDispatch, useSelector } from 'react-redux'
-import { sumOne } from './redux/counterReducer'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 
-import './scss/index.scss'
+import HomeMain from './pages/home/home-main'
+import LayoutApp from './layout/layout-app/layout-app'
+import Router from './routers/router'
 
-const ReducerTest = () => {
-    const dispatch = useDispatch()
-    const counter = useSelector( state => state.counter )
-    const clicks = counter.clicks
-    return (
-        <>
-            <h2>REDUCER (clicks are saved in redux state)</h2>
-            <button onClick={() => dispatch( sumOne( clicks ) )}>
-                clicked {counter.clicks} times
-            </button>
-        </>
-    )
-}
-
-const HookTest = () => {
-    const notes = useNotes( BACKEND_URL )
-    return (
-        <>
-            <h2>HOOK (hook getting dev and prod backend urls from .env custom file)</h2>
-            <div>
-                <strong>{notes.length} </strong>
-                notes on server {BACKEND_URL}
-            </div>
-        </>
-    )
-}
-
-const Menu = () => {
-    return (
-        <ul>
-            <li><Link to="/">Testing clicks reducer</Link></li>
-            <li><Link to="notes">Testing database connection</Link></li>
-        </ul>
-    )
-}
+import './app.scss'
 
 const App = () => {
     return (
-        <section className='container'>
-            <Menu />
-            <Routes>
-                <Route path="/" element={<ReducerTest />} />
-                <Route path="notes" element={<HookTest />} />
-            </Routes>
-        </section>
+        <Routes>
+            <Route path='/' element={<LayoutApp />}>
+                <Route path='/tool/:tool' element={<Router />} />
+                <Route path='*' element={<HomeMain />} />
+                <Route index element={<HomeMain />} />
+            </Route>
+        </Routes>
     )
 }
 

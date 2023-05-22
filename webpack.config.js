@@ -55,7 +55,6 @@ const config = ( env, argv ) => {
                             ],
                         },
                         noErrorOnMissing: true,
-                        to: 'img/[name][ext]',
                     },
                 ],
             } ),
@@ -65,7 +64,7 @@ const config = ( env, argv ) => {
                 filename: production
                     ? 'css/[name].[contenthash].css'
                     : 'css/[name].css',
-            } ),
+            } )
         ].filter( Boolean ),
         devtool: production ? false : 'source-map',
         devServer: {
@@ -91,6 +90,15 @@ const config = ( env, argv ) => {
                     ],
                 },
                 {
+                    test: /\.css$/,
+                    use: [
+                        production
+                            ? MiniCssExtractPlugin.loader
+                            : 'style-loader',
+                        'css-loader',
+                    ],
+                },
+                {
                     test: /\.scss$/,
                     use: [
                         production
@@ -101,11 +109,19 @@ const config = ( env, argv ) => {
                     ],
                 },
                 {
-                    test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
+                    test: /\.(svg|png|jpe?g|gif|ico)$/i,
                     exclude: /node_modules/,
                     type: 'asset/resource',
                     generator: {
-                        filename: 'assets/[name][ext]',
+                        filename: 'assets/images/[name][ext]',
+                    },
+                },
+                {
+                    test: /\.(woff|woff2|eot|ttf|otf)$/,
+                    exclude: /node_modules/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'assets/fonts/[name][ext]',
                     },
                 },
             ],
