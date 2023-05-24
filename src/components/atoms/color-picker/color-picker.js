@@ -28,7 +28,14 @@ const ColorPicker = ( { onChange, initialRgb } ) => {
     }
 
     const handleManualColorChange = ( newColor ) => {
-        setHexColor( newColor )
+        const rgbaColor = useConverter.hexAtoRGBA( newColor )
+
+        if ( typeof rgbaColor !== 'string' ) {
+            console.log( rgbaColor )
+            setHexColor( newColor )
+            setRgbColor( rgbaColor )
+            onChange( rgbaColor )
+        }
     }
 
     const handleClick = ( e ) => {

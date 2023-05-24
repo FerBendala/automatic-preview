@@ -63,8 +63,7 @@
         "redux": "^4.2.0",
         "redux-persist": "^6.0.0",
         "regenerator-runtime": "^0.13.11",
-        "src": "^1.0.0",
-        "use-local-storage-state": "^18.3.2"
+        "src": "^1.0.0"
     },
     "jest": {
         "testEnvironment": "node",

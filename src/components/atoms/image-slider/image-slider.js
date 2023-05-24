@@ -1,6 +1,7 @@
-import useLocalStorageState from 'use-local-storage-state'
+import { useEffect } from 'react'
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { setCurrentSlide } from '../../../redux/domination'
 
 import iconArrowLeft from '../../../assets/images/icon-arrow-left-circle-white.svg'
 import iconArrowRight from '../../../assets/images/icon-arrow-right-circle-white.svg'
@@ -8,16 +9,21 @@ import iconArrowRight from '../../../assets/images/icon-arrow-right-circle-white
 import './image-slider.scss'
 
 const ImageSlider = ( { images } ) => {
-    const [currentSlide, setCurrentSlide] = useLocalStorageState( 'currentSlide', { defaultValue: 0 } )
+    const dispatch = useDispatch()
+    const currentSlide = useSelector( state => state.domination.currentSlide )
+
+    useEffect( () => {
+        dispatch( setCurrentSlide( 0 ) )
+    }, [] )
 
     const handleClickBack = () => {
         const slide = currentSlide - 1
-        setCurrentSlide( slide )
+        dispatch( setCurrentSlide( slide ) )
     }
 
     const handleClickNext = () => {
         const slide = currentSlide + 1
-        setCurrentSlide( slide )
+        dispatch( setCurrentSlide( slide ) )
     }
 
     return (

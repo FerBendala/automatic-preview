@@ -1,4 +1,4 @@
-import useLocalStorageState from 'use-local-storage-state'
+import { useSelector } from 'react-redux'
 
 import ImageSlider from '../../../components/atoms/image-slider/image-slider'
 
@@ -7,7 +7,8 @@ import './domination-template.scss'
 const DominationTemplate = (
     { backgroundColor, brandLogo, titleText, titleColor, adsImages, buttonColor, buttonText, buttonTextColor }
 ) => {
-    const currentSlide = useLocalStorageState( 'currentSlide' )[0]
+    const currentSlide = useSelector( state => state.domination.currentSlide )
+
     const setRgba = ( value ) => {
         const { r, g, b, a } = value ?? { r: 255, g: 255, b: 255, a: 1 }
         return `rgba(${r},${g},${b},${a})`

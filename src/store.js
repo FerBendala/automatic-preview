@@ -1,17 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-
-import dominationReducer from './redux/domination'
-import homeReducer from './redux/home'
-
-const persistConfig = {
-    key: 'root',
-    storage,
-}
-
-const persistedDominationReducer = persistReducer( persistConfig, dominationReducer )
-const persistedHomeReducer = persistReducer( persistConfig, homeReducer )
+import { persistStore, REHYDRATE, PERSIST } from 'redux-persist'
+import { persistedDominationReducer, persistedHomeReducer } from './redux/persist'
 
 const rootReducer = {
     home: persistedHomeReducer,
@@ -20,10 +9,15 @@ const rootReducer = {
 
 const store = configureStore( {
     reducer: rootReducer,
+    middleware: ( getDefaultMiddleware ) =>
+        getDefaultMiddleware( {
+            serializableCheck: {
+                ignoredActions: [PERSIST, REHYDRATE],
+            },
+        } ),
 } )
 
 const persistor = persistStore( store )
 
 console.log( 'initial store:', store.getState() )
-
 export { store, persistor }

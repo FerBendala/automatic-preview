@@ -1,16 +1,19 @@
 import { useParams } from 'react-router-dom'
 
 import DominationMain from '../pages/domination/domination-main'
+import NotFound from '../pages/not-found/not-found'
 
-const Router = () => {
+const toolComponentMap = {
+    'domination': DominationMain,
+    // Agregar aquí otras herramientas según sea necesario
+}
+
+const Router = ( { isLoading } ) => {
     let { tool } = useParams()
 
-    switch ( tool ) {
-        case 'domination':
-            return <DominationMain />
-        default:
-            return <h1>ups... error 404!</h1>
-    }
+    const Component = toolComponentMap[tool] || NotFound
+
+    return <Component isLoading={isLoading} />
 }
 
 export default Router

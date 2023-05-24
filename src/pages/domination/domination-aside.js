@@ -3,7 +3,7 @@ import download from 'downloadjs'
 import useConverter from '../../utils/converters'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setAdsImages, setCurrentSlide, setBackgroundColor, setBrandImage, setButtonColor, setButtonText, setButtonTextColor, setTitleText, setTitleColor } from '../../redux/domination'
+import { setAdsImages, setBackgroundColor, setBrandImage, setButtonColor, setButtonText, setButtonTextColor, setTitleText, setTitleColor } from '../../redux/domination'
 
 import AsideSection from '../../components/molecules/aside-section/aside-section'
 import ColorPicker from '../../components/atoms/color-picker/color-picker'
@@ -28,11 +28,8 @@ const DominationAside = ( { isLoading } ) => {
     const buttonColor = dominationReducer.buttonColor
     const buttonText = dominationReducer.buttonText
     const buttonTextColor = dominationReducer.buttonTextColor
-    const currentSlide = dominationReducer.currentSlide
     const titleColor = dominationReducer.titleColor
     const titleText = dominationReducer.titleText
-
-    console.log( dominationReducer )
 
     const handleAdsImages = ( data ) => dispatch( setAdsImages( data ) )
     const handleBackgroundColor = ( data ) => dispatch( setBackgroundColor( data ) )
@@ -45,6 +42,7 @@ const DominationAside = ( { isLoading } ) => {
 
     const handleExportClick = async () => {
         isLoading( true )
+
         const mobile = document.getElementById( 'mobile' )
         const sliderNextButton = document.querySelector( 'button[aria-label="next"]' )
         const sliderPrevButton = document.querySelector( 'button[aria-label="previous"]' )
@@ -58,9 +56,6 @@ const DominationAside = ( { isLoading } ) => {
         }
 
         for ( let i = 0; i < adsImages.length; i++ ) {
-            dispatch( setCurrentSlide( i ) )
-            console.log( currentSlide )
-
             const image = adsImages[i]
             const name = useConverter.removeSpecialChars( image ).slice( -12 )
             const indexNumber = useConverter.addCero( i )

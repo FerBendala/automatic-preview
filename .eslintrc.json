@@ -23,7 +23,11 @@
   "rules": {
     "indent": [
       "error",
-      4
+      4,
+      {
+        "SwitchCase": 1,
+        "ignoredNodes":["ConditionalExpresion"]
+      }
     ],
     "linebreak-style": [
       "error",

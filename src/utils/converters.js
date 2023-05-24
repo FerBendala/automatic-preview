@@ -39,23 +39,22 @@ const RGBAToHexA = ( rgba ) => {
 }
 
 const hexAtoRGBA = ( h, isPct ) => {
-    let r = 0, g = 0, b = 0, a = 1
-    isPct = isPct === true
+    const hex = h.replace( '#', '' )
+    let r, g, b, a = 1
 
-    if ( h.length === 5 ) {
-        r = '0x' + h[1] + h[1]
-        g = '0x' + h[2] + h[2]
-        b = '0x' + h[3] + h[3]
-        a = '0x' + h[4] + h[4]
-
-    } else if ( h.length === 9 ) {
-        r = '0x' + h[1] + h[2]
-        g = '0x' + h[3] + h[4]
-        b = '0x' + h[5] + h[6]
-        a = '0x' + h[7] + h[8]
+    if ( hex.length === 3 ) {
+        r = parseInt( hex[0] + hex[0], 16 )
+        g = parseInt( hex[1] + hex[1], 16 )
+        b = parseInt( hex[2] + hex[2], 16 )
+    } else if ( hex.length === 6 ) {
+        r = parseInt( hex.substr( 0, 2 ), 16 )
+        g = parseInt( hex.substr( 2, 2 ), 16 )
+        b = parseInt( hex.substr( 4, 2 ), 16 )
+    } else {
+        return h // Devuelve el valor anterior si el valor hexadecimal no es válido
     }
 
-    a = +( a / 255 ).toFixed( 3 )
+    isPct = isPct === true
 
     if ( isPct ) {
         r = +( r / 255 * 100 ).toFixed( 1 )
@@ -63,17 +62,24 @@ const hexAtoRGBA = ( h, isPct ) => {
         b = +( b / 255 * 100 ).toFixed( 1 )
     }
 
-    return 'rgba(' + ( isPct ? r + '%,' + g + '%,' + b + '%,' + a + '%' : +r + ',' + +g + ',' + +b + ',' + a ) + ')'
+    // Comprueba si los valores de color son NaN y devuelve el valor anterior en ese caso
+    if ( isNaN( r ) || isNaN( g ) || isNaN( b ) ) {
+        return h
+    }
+
+    return isPct ? { r, g, b, a } : { r, g, b, a: +a }
 }
+
+
 
 // Strings
 const removeSpecialChars = ( string ) => {
-    return string.replace( /[^a-zA-Z0-9 ]/g, "" )
+    return string.replace( /[^a-zA-Z0-9 ]/g, '' )
 }
 
 // Numbers
 const addCero = ( number ) => {
-    return number < 10 ? "0" + number : number
+    return number < 10 ? '0' + number : number
 }
 
 const useConverter = { RGBAToHexA, hexAtoRGBA, removeSpecialChars, addCero }
