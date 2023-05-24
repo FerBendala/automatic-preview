@@ -5,12 +5,10 @@ import NotFound from '../pages/not-found/not-found'
 
 const toolComponentMap = {
     'domination': DominationAside,
-    // Agregar aquí otras herramientas según sea necesario
 }
 
 const RouterAside = ( { isLoading } ) => {
     let { tool } = useParams()
-
     const Component = toolComponentMap[tool] || NotFound
 
     return <Component isLoading={isLoading} />

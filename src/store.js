@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { persistStore, REHYDRATE, PERSIST } from 'redux-persist'
 import { persistedDominationReducer, persistedHomeReducer } from './redux/persist'
+import { useLogger } from './hooks/useLogger'
 
 const rootReducer = {
     home: persistedHomeReducer,
@@ -19,5 +20,5 @@ const store = configureStore( {
 
 const persistor = persistStore( store )
 
-console.log( 'initial store:', store.getState() )
+useLogger( ( 'initial store:', store.getState() ), 'info' )
 export { store, persistor }
