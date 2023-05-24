@@ -9,4 +9,5 @@ coverage
 # others
 .DS_Store
 .vscode
+.chat.md
 stats.json
