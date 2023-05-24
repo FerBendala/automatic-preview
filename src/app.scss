@@ -1,7 +1,8 @@
-@use "./variables" as *;
-@use "./mixins" as m;
-@use "./functions" as f;
-@import "./reset.scss";
+@use "./assets/sass/variables.scss" as *;
+@use "./assets/sass/mixins" as m;
+@use "./assets/sass/functions" as f;
+@import "./assets/sass/reset.scss";
+@import "./assets/sass/fonts.scss";
 
 html {
     scroll-behavior: smooth;
