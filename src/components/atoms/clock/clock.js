@@ -3,6 +3,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 
 import './clock.scss'
+import { useLogger } from '../../../hooks/useLogger'
 
 const Clock = () => {
     const [hour, setHour] = useState( new Date() )
@@ -17,10 +18,11 @@ const Clock = () => {
         setHour( new Date() )
     }
 
+
     const readHour = ( data ) => {
         return data
             .toLocaleTimeString()
-            .slice( 0, 5 )
+            .slice( 0, 4 )
     }
 
     return (
