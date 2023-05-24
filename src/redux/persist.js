@@ -1,7 +1,7 @@
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import dominationReducer from './domination'
-import homeReducer from './home'
+import dominationReducer from './reducers/domination'
+import homeReducer from './reducers/home'
 
 const persistConfig = {
     key: 'root',

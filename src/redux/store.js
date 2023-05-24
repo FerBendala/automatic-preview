@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { persistStore, REHYDRATE, PERSIST } from 'redux-persist'
-import { persistedDominationReducer, persistedHomeReducer } from './redux/persist'
-import { useLogger } from './hooks/useLogger'
+import { persistedDominationReducer, persistedHomeReducer } from './persist'
+import { useLogger } from '../hooks/useLogger'
 
 const rootReducer = {
     home: persistedHomeReducer,

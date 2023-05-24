@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { appSelected } from '../../redux/home'
+import { appSelected } from '../../redux/reducers/home'
 
 import Dropdown from '../../components/atoms/dropdown/dropdown'
 

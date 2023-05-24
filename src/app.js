@@ -5,7 +5,7 @@ import HomeMain from './pages/home/home-main'
 import LayoutApp from './layout/layout-app/layout-app'
 import Router from './routers/router'
 
-import './app.scss'
+import './assets/sass/generic.scss'
 
 const App = () => {
     return (

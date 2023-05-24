@@ -1,27 +1,35 @@
-@use "src/styles/mixins" as m;
-@use "src/styles/functions" as s;
-@use "src/styles/variables" as *;
+@use "./variables" as *;
+@use "./mixins" as m;
+@use "./functions" as f;
+@import "./reset.scss";
 
 html {
     scroll-behavior: smooth;
     body {
+        margin: 0;
+
         font-family: $font-family;
         line-height: 1.4;
 
+        @media (max-width: 1440px) {
+            font-size: 80%;
+        }
+        @include m.media(desktop) {
+            font-size: 72%;
+        }
+
+        // Basics
         * {
+            box-sizing: border-box;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            box-sizing: border-box;
-            min-width: 0;
-        }
+            -webkit-tap-highlight-color: transparent;
 
-        // Titles
-        h2 {
-            margin-bottom: s.em(16);
-
-            font-size: s.em(24);
-            font-weight: 600;
+            // Focus
+            &:focus {
+                outline: none;
+            }
         }
 
         // Images
@@ -29,26 +37,16 @@ html {
             max-width: 100%;
         }
 
-        // Container
-        .container {
-            @include m.container;
+        // Button
+        button {
+            font-family: $font-family;
         }
 
-        // Main
-        main {
-            // Responsive
-            $devices: (
-                "desktop": "items items items" "pomodoro . .",
-                "laptop": "items items" "pomodoro .",
-                "tablet": "items" "pomodoro",
-                "phone": "items" "pomodoro",
-            );
+        // Root
+        #root {
+            @include m.grid($gc: minmax(0, #{f.em(464)}) minmax(0, 3fr), $gap: 0);
 
-            @each $device, $area in $devices {
-                @include m.media($device) {
-                    @include m.grid($ga: $area, $gg: em(16));
-                }
-            }
+            height: 100vh;
         }
     }
 }

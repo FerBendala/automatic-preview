@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentSlide } from '../../../redux/domination'
+import { setCurrentSlide } from '../../../redux/reducers/domination'
 
 import iconArrowLeft from '../../../assets/images/icon-arrow-left-circle-white.svg'
 import iconArrowRight from '../../../assets/images/icon-arrow-right-circle-white.svg'

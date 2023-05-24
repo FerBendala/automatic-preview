@@ -3,7 +3,7 @@ import download from 'downloadjs'
 import useConverter from '../../utils/converters'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setAdsImages, setBackgroundColor, setBrandImage, setButtonColor, setButtonText, setButtonTextColor, setTitleText, setTitleColor } from '../../redux/domination'
+import { setAdsImages, setBackgroundColor, setBrandImage, setButtonColor, setButtonText, setButtonTextColor, setTitleText, setTitleColor } from '../../redux/reducers/domination'
 
 import AsideSection from '../../components/molecules/aside-section/aside-section'
 import ColorPicker from '../../components/atoms/color-picker/color-picker'
