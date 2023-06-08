@@ -51,7 +51,6 @@
         "core-js": "^3.30.2",
         "dotenv": "^16.0.3",
         "downloadjs": "^1.4.7",
-        "fsevents": "^2.3.2",
         "getbase64data": "^1.0.8",
         "html-react-parser": "^3.0.16",
         "html-to-image": "^1.11.11",
@@ -65,6 +64,9 @@
         "redux-persist": "^6.0.0",
         "regenerator-runtime": "^0.13.11",
         "src": "^1.0.0"
+    },
+    "optionalDependencies": {
+      "fsevents": "*"
     },
     "jest": {
         "testEnvironment": "node",
